@@ -1,3 +1,4 @@
+import { AlertError, AlertSuccess } from "../../components/alert/AlertToastify"
 import { heroService } from "../../services/HeroServices"
 import { setPost, setPostById } from "./postSlice"
 
@@ -35,7 +36,9 @@ export const useDeletePost = (params) => {
         try {
             await heroService.delete(`/posts/${params}`)
             dispatch(usePostList())
+            AlertSuccess('Success Delete')
         } catch (error) {
+            AlertError(error)
             throw error
         }
     }
